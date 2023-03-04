@@ -1,0 +1,239 @@
+---
+title: "Econometrics Homework 1"
+author: "Sargis Hakobyan"
+date: "2023-02-20"
+output: html_document
+---
+
+
+# Problem 1 
+#### Lets $n × n$ matrix $A$ is a function of scalar varaiable $t$, $A = A(t)$, and, $x$ - is vector of size $n × 1$. 
+
+#### 1. Find $\frac{∂(x′Ax)}{∂t}$.
+
+If $A$ is a function of $t$ and $x$ is a vector of size $n × 1$, then we can write $x'Ax$ as a scalar function of $t$:
+
+$$x'Ax = f(t)$$
+
+To find the partial derivative of $f(t)$ with respect to $t$, we can use the chain rule:
+
+$$\frac{∂f(t)} {∂t} = (\frac{∂x'Ax} {∂x}) * (\frac{∂x} {∂t}) + (\frac{∂x'Ax} {∂A}) * (\frac{∂A}{∂t})$$
+
+To compute these partial derivatives, we can use the following identities:
+
+$$\frac{∂x'Ax}{∂x} = 2Ax$$
+
+
+
+
+$$\frac{∂x'Ax}{∂A} = x'x$$
+
+
+
+$$\frac{∂A}{∂t} = \frac{dA(t)}{dt}$$
+
+Substituting these identities into the chain rule, we get:
+
+$$\frac{∂f(t)}{∂t} = 2x'Ax'(t) + x'xA'(t) + x'Ax(t)A'(t)$$
+
+Notice that we used the fact that $A$ is a symmetric matrix, so $A'(t) = A(t)' = A(t)$. This simplifies the expression to:
+
+$$\frac{∂(x'Ax)}{∂t} = 2x'Ax'(t) + 2x'Ax(t)A'(t)$$
+
+
+
+
+#### 2. Find $\frac{∂(x′Ax)}{∂t}$, if $x$ is function of $t$ : $x = x(t)$.
+
+To find $\frac{∂(x'Ax)}{∂t}$, we need to use the product rule and the chain rule of differentiation.
+
+Let's begin by expressing $x'Ax$ in terms of $t$. Since $x$ is a function of $t$, we can write $x'(t)$ for its derivative with respect to $t$. Then,
+
+$$x'Ax = x'(t)Ax$$
+
+Now, let's use the product rule of differentiation:
+
+$$\frac{∂(x'Ax)}{∂t} = x′(t)\frac{ ∂(Ax)}{∂t} + \frac{d}{dt}(x′(t))Ax$$
+
+Note that we have used the chain rule to evaluate $\frac{d}{dt}x'(t)$, which is the derivative of $x'(t)$ with respect to $t$. This can be written as $\frac{d}{dt}(x'(t)) = x''(t)$, where $x''(t)$ is the second derivative of $x$ with respect to $t$.
+
+Now, we need to evaluate $∂(Ax)/∂t$. For this, we use the chain rule again:
+
+$$\frac{∂(Ax)}{∂t} = (\frac{∂A}{∂x})\frac{dx}{dt} + \frac{∂A}{∂t}$$
+
+Here, we have used the fact that $A$ is a function of $x$, and so we can apply the chain rule to differentiate $Ax$ with respect to $t$. Note that $\frac{∂A}{∂t}$ is the partial derivative of $A$ with respect to $t$, while $\frac{∂A}{∂x}$ is the partial derivative of $A$ with respect to $x$.
+
+Substituting this expression for $\frac{∂(Ax)}{∂t}$ back into the original equation, we get:
+
+$$\frac{∂(x'Ax)}{∂t} = x′(t)[(\frac{∂A}{∂x})\frac{dx}{dt} + (\frac{∂A}{∂t})] + x′′(t)Ax$$
+
+
+
+
+
+
+
+# Problem 2 
+Calculate the following expression:
+
+$$\frac{∂ log f(x − y)}{∂y}$$
+where $f$ is scalar function and $x, y$ are vectors.
+Sometimes the notation of gradient is used.
+$$\frac{∂f(x)}{∂x} ≡ ∇f(x) − the gradient of f$$
+So $∇f(x − y)$ means the gradient of $f$ evaluated at $(x − y)$.
+
+
+Using the chain rule and the fact that $∇log(g) = \frac{1}{g}$,  $∇g$, we have:
+
+$$\frac{∂ log f(x − y)}{∂y}  = \frac{1}{f(x-y)} \frac{∂f(x-y)}{∂y}$$
+
+Therefore, we need to calculate $\frac{∂f(x-y)}{∂y}$ 
+Using the chain rule and the fact that  $∇f(x) = \frac{∂f(x)}{∂x}$, we have:
+
+$$\frac{∂f(x-y)}{∂y} = ∇f(x-y) · \frac{∂(x-y)}{∂y} = -∇f(x-y)$$
+
+where the second equality follows from the fact that  $\frac{∂(x-y)}{∂y} = -1$
+
+Substituting this result back into the original expression, we get:
+
+$$\frac{∂ log f(x − y)}{∂y} = -(\frac{1}{f(x-y)}) ∇f(x-y)$$
+
+Therefore, the final answer is:
+
+$$\frac{∂ log f(x − y)}{∂y} = -\frac{∇f(x-y)}{f(x-y)}$$
+
+
+
+# Problem 3
+$f$ is a scalar function of two vectors $x$ and $y$ :
+
+$$f(x, y) =\frac{ x · x} {y · y}$$
+
+
+#### 1. Calculate the derivative:  $\frac{∂f}{∂x}$ 
+
+
+To calculate the partial derivative of $f$ with respect to $x$, we need to treat $y$ as a constant and differentiate only with respect to $x$. We can use the quotient rule of differentiation to compute this partial derivative:
+
+$$\frac{∂f}{∂x} = \frac{∂}{∂x} \frac{x · x}{y · y} = \frac{[(2x · y · y) - (2x · x · y)] }{ (y · y)^2 }=\frac{ 2x · (y · y - x · y) }{ (y · y)^2} = \frac{2x · (y - (\frac{x · y }{ y · y}) }{(y · y)}$$
+
+Note that we used the dot product properties:
+
+$$x · x = ||x||^2$$
+The derivative of $x · y$ with respect to $x$ is $y$
+The derivative of $y · y$ with respect to $x$ is $0$
+Therefore, the partial derivative of f with respect to $x$ is:
+
+$$\frac{∂f}{∂x} = \frac{2x · (y - (\frac{x · y }{ y · y})) }{ (y · y)}$$
+
+
+#### 2.Calculate the derivative:  $\frac{∂f}{∂y}$ 
+
+To find the partial derivative of $f$ with respect to $y$, we can use the chain rule and the formula for the derivative of the dot product. Let's start by writing out the definition of $f$:
+
+$$f(x, y) = \frac{x · x}{y · y}$$
+
+where $·$ represents the dot product. To find $\frac{∂f}{∂y}$, we need to differentiate this expression with respect to $y$ while treating $x$ as a constant. Using the chain rule, we have:
+
+$$\frac{∂f}{∂y} = \frac{∂ (\frac{x · x}{y · y})}{∂y} = \frac{-(x · x)}{(y · y)^2} * \frac{∂(y · y)}{∂y}$$
+
+We can simplify the derivative of $y · y$ with respect to $y$ as follows:
+
+$$\frac{∂(y · y)}{∂y} = 2y$$
+
+Substituting this back into the expression for $\frac{∂f}{∂y}$, we get:
+
+$$\frac{∂f}{∂y} = \frac{-(x · x)}{(y · y)^2} * 2y = \frac{-2(x · x)y}{(y · y)^2}$$
+
+Therefore, the partial derivative of $f$ with respect to $y$ is:
+
+$$\frac{∂f}{∂y} = \frac{-2(x · x)y}{(y · y)^2}$$
+
+
+
+
+# Problem 4 
+Suppose $f$ is a scalar function and $x$ is a vector. If a second-order partial derivatives of f exist, then the $Hessian$ matrix $H$ of $f$ is a square $n × n$ matrix. Prove that the $Hessian$ matrix of a function $f$ is the $Jacobian$ matrix of the gradient of the function $f$; that is:
+$H(f(x)) = J(∇f(x))$
+
+$$\frac{∂f(x)}{∂x} ≡ ∇f(x)$$
+
+
+To prove that the $Hessian$ matrix of a function $f$ is the $Jacobian$ matrix of the gradient of the function $f$, we need to show that the $(i, j)$-th element of the $Hessian$ matrix of $f$, denoted as $H(f(x))_{ij}$,  is equal to the partial derivative of the $i$-th component of the gradient of $f$ with respect to the $j$-th variable, denoted as $\frac{∂∇f(x)_i}{∂x_j}$
+
+We start by writing out the definitions of the $Hessian$ matrix and the gradient of $f$:
+
+$$H(f(x))_{ij} = \frac{∂²f(x)}{∂x_i ∂x_j}$$
+
+$$∇f(x) = [\frac{∂f(x)}{∂x₁}, \frac{∂f(x)}{∂x₂}, ..., \frac{∂f(x)}{∂x_n}]$$
+
+To find the $i$-th component of the gradient of $f$, we take the partial derivative of $f$ with respect to the $i$-th variable:
+
+$$\frac{∂f(x)}{∂x_i} = \frac{∂}{∂x_i}[f(x)]$$
+
+Now we take the partial derivative of this expression with respect to the $j$-th variable:
+
+$$\frac{∂}{∂x_j}[\frac{∂}{∂x_i}[f(x)]] = \frac{∂²f(x)}{∂x_i ∂x_j}$$
+
+This is exactly the $(i, j)$-th element of the $Hessian$ matrix of $f$. Therefore, we can write:
+
+$$\frac{∂f(x)}{∂x} = ∇f(x)$$
+
+And since the $Jacobian$ matrix of the gradient of $f$ is simply the matrix of all its partial derivatives, we have:
+
+$$J(∇f(x)) $$
+$$||$$ 
+$$[ \frac{∂∇f(x)_1}{∂x_1}, \frac{∂∇f(x)_1}{∂x_2}, ..., \frac{∂∇f(x)_1}{∂x_n} $$
+$$\frac{∂∇f(x)_2}{∂x_1}, \frac{∂∇f(x)_2}{∂x_2}, ..., \frac{∂∇f(x)_2}{∂x_n}$$
+$$...$$
+$$\frac{∂∇f(x)_n}{∂x_1}, \frac{∂∇f(x)_n}{∂x_2}, ..., \frac{∂∇f(x)_n}{∂x_n} ]$$
+
+By comparing the two expressions for the $Hessian$ matrix and the $Jacobian$ matrix of the gradient of $f$, we can see that they are equal. Therefore, we have proved that:
+
+$$H(f(x)) = J(∇f(x))$$
+
+
+
+# Problem 5
+In neural networks the $Softmax$  $function$ is used in back-propagation:
+
+$$p_j = \frac{e^{x_i}}{Σ_k e^{x_k}}$$
+
+This is used in a loss function of the form
+$$L = −Σ_jy_j log(p_j)$$ ,
+
+where $x$ is a some vector and $y$ is a vector, which consist of $0$ and $1$ in position $k$:
+
+$$y = [0, ..., 1, ...0]$$
+
+Please calculate the derivative of $L$ with respect to $x$.
+Note: We can calculate the derivative of $L$ by one component of $x$:
+
+$$\frac{∂L}{∂x_i}$$
+To calculate the derivative of the loss function $L$ with respect to $x_i$, we can use the chain rule of differentiation. Let's first expand the expression for $L$:
+
+$$L = -Σy_jlog(p_j) = -y_ilog(p_i) - Σ_{j≠i}y_j*log(p_j)$$
+
+We can focus on the first term:
+
+$$\frac{∂(-y_ilog(p_i))}{∂x_i} = -y_i\frac{∂log(p_i)}{∂x_i} = -y_i\frac{∂(log(e^{x_i}) - log(Σ_k(e^{x_k})))}{∂x_i} = -y_i(1 - \frac{∂(log(Σ_k(e^{x_k})))}{∂xi})$$
+
+To compute the derivative of the second term, we can use the fact that:
+
+$$\frac{∂(log(Σ_k(e^{x_k})))}{∂x_i} = \frac{∂(log(e^{x_i} + Σ_{j≠i}e^{x_j}))}{∂x_i}$$
+
+Using the chain rule, we get:
+
+$$\frac{∂(log(e^{x_i} + Σ_{j≠i}e^{x_j}))}{∂x_i} = \frac{1}{e^{x_i} + Σ_{j≠i}e^{x_j}} * \frac{∂(e^{x_i} + Σ_{j≠i}e^{x_j})}{∂x_i} = \frac{1 }{e^{x_i} + Σ_{j≠i}e^{x_j}} * e^{x_i} * (1 - δ_{ij})$$
+
+where $δ_{ij}$ is the Kronecker delta, which is equal to $1$ if $i=j$, and $0$ otherwise.
+
+Substituting this back into the expression for $\frac{∂L}{∂x_i}$, we get:
+
+$$\frac{∂L}{∂x_i} = -y_i*(1 - \frac{1}{e^{x_i} + Σ_{j≠i}e^{x_j}}) + Σ_{j≠i}(\frac{y_j}{e^{x_i} + Σ_{j≠i}e^{x_j}}) * e^{x_i} * (1 - δ_{ij})$$
+
+Simplifying this expression, we get:
+
+$$\frac{∂L}{∂x_i} = -y_i*(1 - p_i) + Σ_{j≠i}(y_j*p_i)$$
+
+
